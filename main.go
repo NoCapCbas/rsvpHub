@@ -114,7 +114,7 @@ func main() {
   http.HandleFunc("/form", formHandler)
   http.HandleFunc("/qrcode", shoppingListQRGenHandler)
 
-  err := http.ListenAndServe(":5000", nil)
+  err := http.ListenAndServe(":8001", nil)
   if (err != nil) {
     fmt.Println(err)
   }

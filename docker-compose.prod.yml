@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  go-backend:
+    build: .
+    container_name: go-backend
+    ports:
+      - "8001:8000" # Mapping port 8001 on the host to port 8000 in the container
+    environment:
+      - GO_ENV=development
+      - PORT=8000
+    volumes:
+      - .:/app
+    command: go run main.go
+
