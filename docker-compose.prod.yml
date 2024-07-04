@@ -2,7 +2,9 @@ version: '3.8'
 
 services:
   go-backend:
-    build: .
+    build:
+      context: .
+      dockerfile: go.Dockerfile
     container_name: go-backend
     ports:
       - "8001:8000" # Mapping port 8001 on the host to port 8000 in the container
