@@ -6,6 +6,6 @@ services:
     image: go_backend:1.0.0
     build: 
       context: ./backend
-      dockerfile: go.dockerfile
+      dockerfile: go.Dockerfile
     ports:
       - '8002:8001'
