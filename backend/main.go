@@ -14,7 +14,7 @@ type Rsvp struct {
   WillAttend bool
 }
 
-var responses = make([]*Rsvp, 0, 10)
+var responses = make([]*Rsvp, 0, 100)
 var templates = make(map[string]*template.Template, 3)
 
 func loadTemplates() {
