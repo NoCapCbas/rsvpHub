@@ -8,4 +8,4 @@ services:
       context: ./backend
       dockerfile: go.Dockerfile
     ports:
-      - '8002:8001'
+      - '8089:8001'
