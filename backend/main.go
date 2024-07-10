@@ -60,6 +60,7 @@ func formHandler(writer http.ResponseWriter, request *http.Request) {
     if err != nil {
       http.Error(writer, fmt.Sprintf("Failed to parse form: %v", err), http.StatusInternalServerError)
     }
+    fmt.Println(request.Form)
     guestCountStr := request.Form["guestcount"][0]
     guestCount, err := strconv.Atoi(guestCountStr)
     if err != nil {
