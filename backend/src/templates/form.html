@@ -69,11 +69,11 @@
         </label>
         <div class="flex items-center space-x-4">
             <div class="flex items-center">
-                <input type="radio" id="team-boy" name="genderguess" value="boy" class="mr-2" checked>
+                <input type="radio" id="team-boy" name="genderguess" value="Boy" class="mr-2" checked>
                 <label for="team-boy" class="text-sm font-medium">Baby is a boy</label>
             </div>
             <div class="flex items-center">
-                <input type="radio" id="team-girl" name="genderguess" value="girl" class="mr-2">
+                <input type="radio" id="team-girl" name="genderguess" value="Girl" class="mr-2">
                 <label for="team-girl" class="text-sm font-medium">Baby is a girl</label>
             </div>
         </div>
@@ -81,17 +81,10 @@
 
   <div class="space-y-2">
       <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Guest Count
+        Guest Count: <span id="guest-count-display" >0</span>
       </label>
       <div class="flex items-center space-x-4">
-          <button id="decrement-btn" type="button" class="px-3 py-2 border border-gray-300 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-              -
-          </button>
-          <input id="guest-count-display" value="0" name="guestcount" class="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-[30px]" disabled>
-          <input id="guest-count-hidden" type="hidden" value="0" name="guestcount">
-          <button id="increment-btn" type="button" class="px-3 py-2 border border-gray-300 rounded-md text-gray-500 hover:text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500">
-              +
-          </button>
+          <input id="guest-count" value="0" name="guestcount" class="border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 w-[180px]" type="range" min="0" max="15">
       </div>
   </div>
 
@@ -99,31 +92,23 @@
   <script>
       document.addEventListener("DOMContentLoaded", function() {
           const guestCountDisplay = document.getElementById("guest-count-display");
-          const guestCountHidden = document.getElementById("guest-count-hidden");
-          const decrementBtn = document.getElementById("decrement-btn");
-          const incrementBtn = document.getElementById("increment-btn");
+          const guestCountRange = document.getElementById("guest-count");
 
+          // Initialize guestCount
           let guestCount = 0;
 
+          // Function to update guest count display
           function updateGuestCountDisplay() {
-              guestCountDisplay.value = guestCount.toString();
-              guestCountHidden.value = guestCount.toString();
+              guestCountDisplay.textContent = guestCount.toString();
           }
 
+          // Update display initially
           updateGuestCountDisplay();
 
-          decrementBtn.addEventListener("click", function() {
-              if (guestCount > 0) {
-                  guestCount--;
-                  updateGuestCountDisplay();
-              }
-          });
-
-          incrementBtn.addEventListener("click", function() {
-              if (guestCount < 15) {
-                  guestCount++;
-                  updateGuestCountDisplay();
-              }
+          // Event listener for input range change
+          guestCountRange.addEventListener("input", function() {
+              guestCount = parseInt(guestCountRange.value);
+              updateGuestCountDisplay();
           });
       });
   </script>
