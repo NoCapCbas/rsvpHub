@@ -5,6 +5,7 @@ import (
   "html/template"
   "net/http"
   "github.com/skip2/go-qrcode"
+  "strconv"
 )
 
 type Rsvp struct {
@@ -12,6 +13,7 @@ type Rsvp struct {
   LastName string
   GenderGuess string 
   WillAttend bool
+  NumberOfPlannedGuest int
 }
 
 var responses = make([]*Rsvp, 0, 100)
@@ -58,11 +60,18 @@ func formHandler(writer http.ResponseWriter, request *http.Request) {
     if err != nil {
       http.Error(writer, fmt.Sprintf("Failed to parse form: %v", err), http.StatusInternalServerError)
     }
+    guestCountStr := request.Form["guestcount"][0]
+    guestCount, err := strconv.Atoi(guestCountStr)
+    if err != nil {
+      http.Error(writer, "Invalid guest count value", http.StatusBadRequest)
+      return
+    }
     responseData := Rsvp {
       FirstName: request.Form["first-name"][0],
       LastName: request.Form["last-name"][0],
       GenderGuess: request.Form["genderguess"][0],
       WillAttend: request.Form["willattend"][0] == "true",
+      NumberOfPlannedGuest: guestCount,
     }
 
     errors := []string {}

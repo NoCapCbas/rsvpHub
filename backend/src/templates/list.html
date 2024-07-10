@@ -9,6 +9,7 @@
                     <tr>
                         <th class="py-2 px-4 border-b border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">First Name</th>
                         <th class="py-2 px-4 border-b border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Last Name</th>
+                        <th class="py-2 px-4 border-b border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Guest Count</th>
                         <th class="py-2 px-4 border-b border-gray-300 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Team</th>
 
                     </tr>
@@ -19,6 +20,7 @@
                             <tr class="hover:bg-gray-100">
                                 <td class="py-2 px-4 border-b border-gray-300">{{ .FirstName }}</td>
                                 <td class="py-2 px-4 border-b border-gray-300">{{ .LastName }}</td>
+                                <td class="py-2 px-4 border-b border-gray-300">{{ .NumberOfPlannedGuest }}</td>
                                 <td class="py-2 px-4 border-b border-gray-300">{{ .GenderGuess }}</td>
                             </tr>
                         {{ end }}
